@@ -25,7 +25,7 @@
   var isCgi = false;
   var genre = "";
 
-  if (l.pathname.replace(/^\/cgi\//), true) {
+  if (l.pathname.replace(/^\/cgi\//, true)) {
     isCgi = true;
     genre = l.pathname.replace(/\/cgi\/([^\/]*)\/.*$/, "$1");
     console.log(genre);
