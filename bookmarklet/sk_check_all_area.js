@@ -26,7 +26,7 @@
   var genre = "";
 
   if (isCgi) {
-    genre = l.pathname.replace(/\/cgi\/([^\/]*)\/.*$/, "$1");
+    genre = l.pathname.replace(/\/cgi\/([^\/]*)\/.*$/, "$1").replace(/2$/, "");
   } else {
     genre = l.pathname.replace(/^([^-]*)-([^\/]*)\/.*/, "$2");
   }
