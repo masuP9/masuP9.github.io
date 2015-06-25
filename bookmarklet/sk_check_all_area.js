@@ -22,13 +22,11 @@
       bridalArea = ["sapporo", "sendai", "tokyo", "nagoya", "osaka", "fukuoka"],
       sweetsArea = ["sapporo", "sendai", "omiya", "tokyo", "yokohama", "nagoya"];
 
-  var isCgi = l.pathname.
+  var isCgi = /^\/cgi\//.test(l.pathname);
   var genre = "";
 
-  if (/^\/cgi\//.test(l.pathname)) {
-    isCgi = true;
+  if (isCgi) {
     genre = l.pathname.replace(/\/cgi\/([^\/]*)\/.*$/, "$1");
-    console.log(genre);
   } else {
     genre = l.pathname.replace(/^([^-]*)-([^\/]*)\/.*/, "$2");
   }
