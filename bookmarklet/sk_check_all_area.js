@@ -22,10 +22,10 @@
       bridalArea = ["sapporo", "sendai", "tokyo", "nagoya", "osaka", "fukuoka"],
       sweetsArea = ["sapporo", "sendai", "omiya", "tokyo", "yokohama", "nagoya"];
 
-  var isCgi = false;
+  var isCgi = l.pathname.
   var genre = "";
 
-  if (l.pathname.replace(/^\/cgi\//, true)) {
+  if (/^\/cgi\//.test(l.pathname)) {
     isCgi = true;
     genre = l.pathname.replace(/\/cgi\/([^\/]*)\/.*$/, "$1");
     console.log(genre);
