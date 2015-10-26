@@ -5,7 +5,7 @@
  javascript:(function(){var%20d=document;s=d.createElement('script');s.setAttribute('src','https://masup9.github.io/bookmarklet/sk_check_all_area.js');d.body.appendChild(s);})();
 
  2.sanko.ac.jp以下でブックマークを実行
- 対応校: BA, 医療, RS, こども, ブライダル, スイーツ以下
+ 対応校: BA, 医療, RS, こども, ブライダル, スイーツ、辻調理以下
 
  ---------------------- */
 
@@ -20,7 +20,8 @@
       sportsArea = ["sapporo", "sendai", "tokyo", "chiba", "yokohama", "nagoya", "osaka", "hiroshima", "fukuoka"],
       childArea = ["sapporo", "sendai", "omiya", "tokyo", "chiba", "yokohama", "nagoya", "osaka", "kobe", "fukuoka"],
       bridalArea = ["sapporo", "sendai", "tokyo", "nagoya", "osaka", "fukuoka"],
-      sweetsArea = ["sapporo", "sendai", "omiya", "tokyo", "yokohama", "nagoya"];
+      sweetsArea = ["sapporo", "sendai", "omiya", "tokyo", "yokohama", "nagoya"],
+      choriArea = ["nagoya", "osaka"];
 
   var isCgi = /^\/cgi\//.test(l.pathname);
   var genre = "";
@@ -49,6 +50,9 @@
       break;
     case "sweets":
       area = sweetsArea;
+      break;
+    case "chori":
+      area = choriArea;
       break;
     default:
       console.error('!!can not get area!!');
