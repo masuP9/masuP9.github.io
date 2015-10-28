@@ -42,6 +42,7 @@ body {
 [role="button"]:hover {
   margin-top: -2px;
   margin-bottom: 2px;
+  color: #c5401a;
   cursor: move;
 }
 
