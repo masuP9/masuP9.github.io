@@ -4,8 +4,8 @@
 * Copyright (c) Tomohiro Okuwaki / bit part LLC (http://bit-part.net/)
 *
 * Since  : 2010-11-12
-* Update : 2015-03-24
-* Version: 2.2.0
+* Update : 2015-06-29
+* Version: 2.2.1
 * Comment: Please use this with Movable Type :)
 *
 * You have to include "mustache.js" before "flexibleSearch.js".
@@ -551,7 +551,7 @@
                     var limitIdx = Number(limit) + Number(offset);
                     resultJSON.totalResults = cloneItems.length;
                     // Sort
-                    if (sortBy !== "" && sortBy in cloneItems[0]) {
+                    if (resultJSON.totalResults !== 0 && sortBy !== "" && sortBy in cloneItems[0]) {
                         if (sortOrder !== "ascend") {
                             sortOrder = "descend";
                         }
