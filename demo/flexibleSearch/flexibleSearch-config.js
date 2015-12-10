@@ -22,7 +22,15 @@
         // searchFormSubmitBtnText: "Search",
 
         // // Advanced Search Form
-        // advancedFormObj: null,
+        advancedFormObj: {
+            text: [
+                {
+                    id: "phone",
+                    name: "phone",
+                    placeholder: "phone"
+                }
+            ]
+        },
         // advancedSearchCond: 'OR', // 'AND'
 
         // // Result Block
