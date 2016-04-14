@@ -27,12 +27,14 @@
                 {
                     id: "phone",
                     name: "phone",
-                    placeholder: "phone"
+                    placeholder: "phone",
+                    label: "phone"
                 },
                 {
                     id: "title",
                     name: "title",
-                    placeholder: "title"
+                    placeholder: "title",
+                    label: "title"
                 }
             ]
         },
