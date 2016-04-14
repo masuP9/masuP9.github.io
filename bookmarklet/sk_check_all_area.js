@@ -9,11 +9,11 @@
 
  ---------------------- */
 
-(function(){
-  var l = document.location,
-      dialog = document.createElement('dialog'),
-      ul = document.createElement('ul'),
-      btn = document.createElement('button'),
+(function(d){
+  var l = d.location,
+      dialog = d.createElement('dialog'),
+      ul = d.createElement('ul'),
+      btn = d.createElement('button'),
       area = "",
       beautyArea = ["sapporo", "sendai", "omiya", "tokyo", "chiba", "yokohama", "nagoya", "osaka", "hiroshima", "fukuoka"],
       medArea   = ["sapporo", "sendai", "omiya", "tokyo", "tachikawa", "chiba", "yokohama", "nagoya", "osaka", "kobe", "hiroshima", "fukuoka"],
@@ -25,11 +25,13 @@
 
   var isCgi = /^\/cgi\//.test(l.pathname);
   var genre = "";
+  var currentArea = "";
 
   if (isCgi) {
     genre = l.pathname.replace(/\/cgi\/([^\/]*)\/.*$/, "$1").replace(/2$/, "");
   } else {
-    genre = l.pathname.replace(/^([^-]*)-([^\/]*)\/.*/, "$2");
+    genre = l.pathname.replace(/^\/([^-]*)-([^\/]*)\/.*/, "$2");
+    currentArea = l.pathname.replace(/^\/([^-]*)-([^\/]*)\/.*/, "$1");
   }
 
   switch (genre) {
@@ -61,22 +63,26 @@
   }
 
   function appendListItem(e, i, v) {
-    var li = document.createElement('li'),
-        a = document.createElement('a');
+    if (e === currentArea) {
+      return false
+    } else {
+      var li = d.createElement('li'),
+          a = d.createElement('a');
 
-    if (isCgi) {
-      href = l.protocol + "//" + l.host + l.pathname + '?local=' + e;
-    } else{
-      href = l.protocol + "//" + l.host + "/" + e + "-" + l.pathname.replace(/^([^-]*)-(.*)/, "$2");
-    };
-    a.textContent = href;
-    a.setAttribute('href', href);
-    li.appendChild(a);
-    ul.appendChild(li);
+      if (isCgi) {
+        href = l.protocol + "//" + l.host + l.pathname + '?local=' + e;
+      } else{
+        href = l.protocol + "//" + l.host + "/" + e + "-" + l.pathname.replace(/^([^-]*)-(.*)/, "$2");
+      };
+      a.textContent = href;
+      a.setAttribute('href', href);
+      li.appendChild(a);
+      ul.appendChild(li);
+    }
   }
 
   function openListItem() {
-    var listItems = document.body.querySelectorAll('dialog > ul > li > a');
+    var listItems = d.body.querySelectorAll('dialog > ul > li > a');
     for (var i = listItems.length - 1; i >= 0; i--) {
       window.open(listItems[i].href);
     };
@@ -90,13 +96,13 @@
     area.forEach(appendListItem);
     dialog.appendChild(ul);
     dialog.appendChild(btn);
-    document.body.appendChild(dialog);
+    d.body.appendChild(dialog);
     dialog.showModal();
   } else {
     dialog.textContent = 'URLの取得に失敗しました';
-    document.body.appendChild(dialog);
+    d.body.appendChild(dialog);
     dialog.showModal();
   };
 
-})();
+})(document);
 
