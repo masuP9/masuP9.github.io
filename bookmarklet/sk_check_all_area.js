@@ -63,22 +63,18 @@
   }
 
   function appendListItem(e, i, v) {
-    if (e === currentArea) {
-      return false
-    } else {
-      var li = d.createElement('li'),
-          a = d.createElement('a');
+    var li = d.createElement('li'),
+        a = d.createElement('a');
 
-      if (isCgi) {
-        href = l.protocol + "//" + l.host + l.pathname + '?local=' + e;
-      } else{
-        href = l.protocol + "//" + l.host + "/" + e + "-" + l.pathname.replace(/^([^-]*)-(.*)/, "$2");
-      };
-      a.textContent = href;
-      a.setAttribute('href', href);
-      li.appendChild(a);
-      ul.appendChild(li);
-    }
+    if (isCgi) {
+      href = l.protocol + "//" + l.host + l.pathname + '?local=' + e;
+    } else{
+      href = l.protocol + "//" + l.host + "/" + e + "-" + l.pathname.replace(/^([^-]*)-(.*)/, "$2");
+    };
+    a.textContent = href;
+    a.setAttribute('href', href);
+    li.appendChild(a);
+    ul.appendChild(li);
   }
 
   function openListItem() {
