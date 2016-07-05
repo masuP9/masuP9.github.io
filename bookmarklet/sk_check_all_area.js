@@ -23,16 +23,7 @@
       sweetsArea = ["sapporo", "sendai", "omiya", "tokyo", "yokohama", "nagoya"],
       choriArea = ["nagoya", "osaka"];
 
-  var isCgi = /^\/cgi\//.test(l.pathname);
-  var genre = "";
-  var currentArea = "";
-
-  if (isCgi) {
-    genre = l.pathname.replace(/\/cgi\/([^\/]*)\/.*$/, "$1").replace(/2$/, "");
-  } else {
-    genre = l.pathname.replace(/^\/([^-]*)-([^\/]*)\/.*/, "$2");
-    currentArea = l.pathname.replace(/^\/([^-]*)-([^\/]*)\/.*/, "$1");
-  }
+  var genre = l.pathname.replace(/^\/([^-]*)-([^\/]*)\/.*/, "$2");
 
   switch (genre) {
     case "beauty":
@@ -64,13 +55,8 @@
 
   function appendListItem(e, i, v) {
     var li = d.createElement('li'),
-        a = d.createElement('a');
+         a = d.createElement('a');
 
-    if (isCgi) {
-      href = l.protocol + "//" + l.host + l.pathname + '?local=' + e;
-    } else{
-      href = l.protocol + "//" + l.host + "/" + e + "-" + l.pathname.replace(/^([^-]*)-(.*)/, "$2");
-    };
     a.textContent = href;
     a.setAttribute('href', href);
     li.appendChild(a);
@@ -78,20 +64,20 @@
   }
 
   function openListItem() {
-    var listItems = d.body.querySelectorAll('dialog > ul > li > a');
+    var listItems = dialog.querySelectorAll('ul > li > a');
     for (var i = listItems.length - 1; i >= 0; i--) {
       window.open(listItems[i].href);
     };
   }
 
   btn.textContent = '全てのページを開く';
-  btn.setAttribute('style', 'margin-top: 1em;font-size: 1rem;cursor:pointer;');
+  btn.setAttribute('style', 'margin-bottom: 1em;font-size: 1rem;cursor:pointer;');
   btn.addEventListener('click', openListItem, false);
 
   if (area) {
     area.forEach(appendListItem);
-    dialog.appendChild(ul);
     dialog.appendChild(btn);
+    dialog.appendChild(ul);
     d.body.appendChild(dialog);
     dialog.showModal();
   } else {
