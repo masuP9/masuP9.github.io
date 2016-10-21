@@ -57,7 +57,7 @@
     var li = d.createElement('li'),
          a = d.createElement('a');
 
-    var href = l.protocol + "//" + l.host + "/" + e + "-" + l.pathname.replace(/^([^-]*)-(.*)/, "$2");
+    var href = l.protocol + "//" + l.host + "/" + e + "-" + l.pathname.replace(/^([^-]*)-(.*)/, "$2") + l.search;
     a.textContent = href;
     a.setAttribute('href', href);
     li.appendChild(a);
